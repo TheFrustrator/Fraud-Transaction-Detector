@@ -1,0 +1,1275 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Compliance Risk Monitor - Authentication</title>
+
+
+    <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        :root {
+
+            --background: #f1f2f3;
+
+            --panel: #ffffff;
+
+            --panel-secondary: #f8f9fa;
+
+            --border: #d5d9dd;
+
+            --border-dark: #b9bec4;
+
+            --text: #1d2228;
+
+            --secondary: #606872;
+
+            --muted: #858c94;
+
+            --dark: #20252b;
+
+            --dark-hover: #292f36;
+
+            --blue: #315d86;
+
+            --green: #397252;
+
+            --red: #984141;
+        }
+
+
+        html,
+        body {
+
+            width: 100%;
+
+            min-height: 100%;
+
+        }
+
+
+        body {
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+
+            background: var(--background);
+
+            color: var(--text);
+
+            min-height: 100vh;
+        }
+
+
+        /* =====================================================
+           MAIN APPLICATION
+        ===================================================== */
+
+        .authentication-page {
+
+            min-height: 100vh;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        /* =====================================================
+           TOP SYSTEM BAR
+        ===================================================== */
+
+        .system-header {
+
+            height: 68px;
+
+            background: #20252b;
+
+            border-bottom: 1px solid #15191d;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 34px;
+
+            color: #ffffff;
+        }
+
+
+        .system-brand {
+
+            display: flex;
+
+            align-items: center;
+        }
+
+
+        .system-symbol {
+
+            width: 32px;
+
+            height: 32px;
+
+            border: 1px solid #777e86;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-right: 11px;
+
+            font-size: 13px;
+        }
+
+
+        .system-name {
+
+            font-size: 13px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.3px;
+        }
+
+
+        .system-subtitle {
+
+            margin-top: 3px;
+
+            color: #969da5;
+
+            font-size: 9px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        .system-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            color: #b7bdc3;
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+        }
+
+
+        .status-indicator {
+
+            width: 7px;
+
+            height: 7px;
+
+            border-radius: 50%;
+
+            background: #5d8a6f;
+        }
+
+
+        /* =====================================================
+           MAIN CONTENT
+        ===================================================== */
+
+        .authentication-content {
+
+            flex: 1;
+
+            display: flex;
+
+            justify-content: center;
+
+            align-items: center;
+
+            padding: 50px 20px;
+        }
+
+
+        /* =====================================================
+           AUTHENTICATION WORKSPACE
+        ===================================================== */
+
+        .authentication-workspace {
+
+            width: 100%;
+
+            max-width: 860px;
+
+            min-height: 470px;
+
+            background: var(--panel);
+
+            border: 1px solid var(--border);
+
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+
+            display: flex;
+        }
+
+
+        /* =====================================================
+           LEFT INFORMATION PANEL
+        ===================================================== */
+
+        .information-panel {
+
+            width: 43%;
+
+            background: #292e34;
+
+            color: #ffffff;
+
+            padding: 42px 38px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: space-between;
+        }
+
+
+        .information-top {
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        .information-label {
+
+            color: #9da4ab;
+
+            font-size: 9px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.2px;
+
+            margin-bottom: 15px;
+        }
+
+
+        .information-title {
+
+            font-size: 25px;
+
+            line-height: 1.25;
+
+            font-weight: 700;
+
+            letter-spacing: -0.3px;
+
+            margin-bottom: 18px;
+        }
+
+
+        .information-description {
+
+            color: #c0c5ca;
+
+            font-size: 12px;
+
+            line-height: 1.7;
+
+            max-width: 290px;
+        }
+
+
+        /* =====================================================
+           SECURITY INFORMATION
+        ===================================================== */
+
+        .security-information {
+
+            border-top: 1px solid #444a50;
+
+            padding-top: 22px;
+        }
+
+
+        .security-heading {
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.8px;
+
+            color: #aeb4ba;
+
+            margin-bottom: 13px;
+        }
+
+
+        .security-item {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 9px;
+
+            margin-bottom: 9px;
+
+            font-size: 10px;
+
+            color: #c0c5ca;
+        }
+
+
+        .security-mark {
+
+            width: 15px;
+
+            height: 15px;
+
+            border: 1px solid #70777e;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 8px;
+
+            color: #c7ccd1;
+        }
+
+
+        /* =====================================================
+           LOGIN PANEL
+        ===================================================== */
+
+        .login-panel {
+
+            flex: 1;
+
+            padding: 42px 48px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            justify-content: center;
+        }
+
+
+        .login-heading {
+
+            font-size: 19px;
+
+            font-weight: 700;
+
+            margin-bottom: 6px;
+        }
+
+
+        .login-description {
+
+            font-size: 11px;
+
+            color: var(--secondary);
+
+            line-height: 1.5;
+
+            margin-bottom: 30px;
+        }
+
+
+        /* =====================================================
+           FORM
+        ===================================================== */
+
+        .input-group {
+
+            margin-bottom: 20px;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 7px;
+        }
+
+
+        .input-label {
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            color: var(--secondary);
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
+        }
+
+
+        .text-input {
+
+            width: 100%;
+
+            height: 42px;
+
+            padding: 0 12px;
+
+            border: 1px solid var(--border-dark);
+
+            border-radius: 0;
+
+            background: #ffffff;
+
+            color: var(--text);
+
+            font-family: inherit;
+
+            font-size: 12px;
+
+            outline: none;
+
+            transition: border-color 0.15s ease;
+        }
+
+
+        .text-input::placeholder {
+
+            color: #a4aab0;
+        }
+
+
+        .text-input:focus {
+
+            border-color: var(--blue);
+
+            box-shadow: inset 3px 0 0 var(--blue);
+        }
+
+
+        /* =====================================================
+           LOGIN BUTTON
+        ===================================================== */
+
+        .login-button {
+
+            width: 100%;
+
+            height: 42px;
+
+            margin-top: 5px;
+
+            border: 1px solid #27313a;
+
+            border-radius: 0;
+
+            background: #29313a;
+
+            color: #ffffff;
+
+            font-family: inherit;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.6px;
+
+            cursor: pointer;
+
+            transition:
+                background-color 0.15s ease,
+                border-color 0.15s ease;
+        }
+
+
+        .login-button:hover {
+
+            background: #1f252b;
+
+            border-color: #1f252b;
+        }
+
+
+        .login-button:active {
+
+            transform: translateY(1px);
+        }
+
+
+        /* =====================================================
+           SECONDARY ACTION
+        ===================================================== */
+
+        .registration-area {
+
+            margin-top: 24px;
+
+            padding-top: 20px;
+
+            border-top: 1px solid var(--border);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 15px;
+        }
+
+
+        .registration-text {
+
+            font-size: 10px;
+
+            color: var(--secondary);
+
+            line-height: 1.4;
+        }
+
+
+        .registration-button {
+
+            height: 34px;
+
+            padding: 0 16px;
+
+            border: 1px solid var(--border-dark);
+
+            border-radius: 0;
+
+            background: #ffffff;
+
+            color: var(--text);
+
+            font-family: inherit;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.3px;
+
+            cursor: pointer;
+
+            white-space: nowrap;
+        }
+
+
+        .registration-button:hover {
+
+            background: #f2f3f4;
+
+            border-color: #91979d;
+        }
+
+
+        /* =====================================================
+           FORGOT PASSWORD
+        ===================================================== */
+
+        .forgot-password {
+
+            display: block;
+
+            margin-top: 17px;
+
+            color: var(--blue);
+
+            font-size: 10px;
+
+            font-weight: 600;
+
+            text-decoration: none;
+        }
+
+
+        .forgot-password:hover {
+
+            text-decoration: underline;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .page-footer {
+
+            min-height: 52px;
+
+            padding: 0 34px;
+
+            background: #ffffff;
+
+            border-top: 1px solid var(--border);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            color: var(--muted);
+
+            font-size: 9px;
+        }
+
+
+        .footer-right {
+
+            text-align: right;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 750px) {
+
+            .system-header {
+
+                padding: 0 18px;
+            }
+
+
+            .system-status {
+
+                display: none;
+            }
+
+
+            .authentication-content {
+
+                padding: 30px 15px;
+            }
+
+
+            .authentication-workspace {
+
+                max-width: 500px;
+
+                flex-direction: column;
+            }
+
+
+            .information-panel {
+
+                width: 100%;
+
+                min-height: 250px;
+
+                padding: 30px;
+            }
+
+
+            .information-description {
+
+                max-width: 100%;
+            }
+
+
+            .security-information {
+
+                margin-top: 30px;
+            }
+
+
+            .login-panel {
+
+                padding: 30px;
+            }
+
+
+            .page-footer {
+
+                padding: 0 18px;
+
+                flex-direction: column;
+
+                justify-content: center;
+
+                gap: 4px;
+            }
+
+
+            .footer-right {
+
+                text-align: center;
+            }
+
+        }
+
+
+        @media (max-width: 420px) {
+
+            .system-name {
+
+                font-size: 11px;
+            }
+
+
+            .authentication-content {
+
+                padding: 20px 10px;
+            }
+
+
+            .information-panel,
+            .login-panel {
+
+                padding: 25px 20px;
+            }
+
+
+            .registration-area {
+
+                flex-direction: column;
+
+                align-items: stretch;
+            }
+
+
+            .registration-button {
+
+                width: 100%;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="authentication-page">
+
+
+    <!-- =====================================================
+         SYSTEM HEADER
+    ====================================================== -->
+
+    <header class="system-header">
+
+
+        <div class="system-brand">
+
+
+            <div class="system-symbol">
+                ▣
+            </div>
+
+
+            <div>
+
+                <div class="system-name">
+                    Compliance Risk Monitor
+                </div>
+
+                <div class="system-subtitle">
+                    Operations Platform
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="system-status">
+
+            <span class="status-indicator"></span>
+
+            System operational
+
+        </div>
+
+
+    </header>
+
+
+
+    <!-- =====================================================
+         AUTHENTICATION CONTENT
+    ====================================================== -->
+
+    <main class="authentication-content">
+
+
+        <div class="authentication-workspace">
+
+
+            <!-- =================================================
+                 INFORMATION PANEL
+            ================================================== -->
+
+            <section class="information-panel">
+
+
+                <div class="information-top">
+
+
+                    <div class="information-label">
+                        Authorized Access
+                    </div>
+
+
+                    <h1 class="information-title">
+                        Compliance<br>
+                        Risk Monitor
+                    </h1>
+
+
+                    <p class="information-description">
+
+                        Secure operational access to compliance
+                        configuration, monitoring rules and
+                        analytical reports.
+
+                    </p>
+
+                </div>
+
+
+
+                <div class="security-information">
+
+
+                    <div class="security-heading">
+                        Access Controls
+                    </div>
+
+
+                    <div class="security-item">
+
+                        <span class="security-mark">
+                            ✓
+                        </span>
+
+                        Authorized personnel only
+
+                    </div>
+
+
+                    <div class="security-item">
+
+                        <span class="security-mark">
+                            ✓
+                        </span>
+
+                        Configuration changes are logged
+
+                    </div>
+
+
+                    <div class="security-item">
+
+                        <span class="security-mark">
+                            ✓
+                        </span>
+
+                        Protected operational environment
+
+                    </div>
+
+
+                </div>
+
+
+            </section>
+
+
+
+            <!-- =================================================
+                 LOGIN PANEL
+            ================================================== -->
+
+            <section class="login-panel">
+
+
+                <h2 class="login-heading">
+                    Account Authentication
+                </h2>
+
+
+                <p class="login-description">
+
+                    Enter your credentials to access the
+                    compliance monitoring workspace.
+
+                </p>
+
+
+
+                <form
+                    onsubmit="
+                        event.preventDefault();
+                        processUserLogin();
+                    "
+                >
+
+
+                    <!-- USERNAME -->
+
+                    <div class="input-group">
+
+
+                        <label
+                            for="usernameField"
+                            class="input-label"
+                        >
+                            Username
+                        </label>
+
+
+                        <input
+                            type="text"
+                            id="usernameField"
+                            class="text-input"
+                            placeholder="Enter username"
+                            value="Soumen23"
+                            autocomplete="username"
+                        >
+
+
+                    </div>
+
+
+
+                    <!-- PASSWORD -->
+
+                    <div class="input-group">
+
+
+                        <label
+                            for="passwordField"
+                            class="input-label"
+                        >
+                            Password
+                        </label>
+
+
+                        <input
+                            type="password"
+                            id="passwordField"
+                            class="text-input"
+                            placeholder="Enter password"
+                            autocomplete="current-password"
+                        >
+
+
+                    </div>
+
+
+
+                    <!-- LOGIN -->
+
+                    <button
+                        type="submit"
+                        class="login-button"
+                    >
+                        Sign In
+                    </button>
+
+
+                </form>
+
+
+
+                <!-- REGISTRATION -->
+
+                <div class="registration-area">
+
+
+                    <div class="registration-text">
+
+                        Don't have an operational account?
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="registration-button"
+                        onclick="processUserRegistration()"
+                    >
+                        Create Account
+                    </button>
+
+
+                </div>
+
+
+
+                <!-- FORGOT PASSWORD -->
+
+                <a
+                    href="#"
+                    class="forgot-password"
+                    onclick="
+                        event.preventDefault();
+                        alert('Please contact your system administrator to reset your password.');
+                    "
+                >
+                    Forgot password?
+                </a>
+
+
+            </section>
+
+
+        </div>
+
+
+    </main>
+
+
+
+    <!-- =====================================================
+         FOOTER
+    ====================================================== -->
+
+    <footer class="page-footer">
+
+
+        <span>
+            Compliance Risk Monitoring System
+        </span>
+
+
+        <span class="footer-right">
+            Authorized access only &nbsp;|&nbsp; Version 1.0.0
+        </span>
+
+
+    </footer>
+
+
+</div>
+
+
+
+<!-- =========================================================
+     EXISTING AUTHENTICATION LOGIC
+     
+     API ENDPOINTS ARE UNCHANGED
+========================================================= -->
+
+<script>
+
+    async function processUserLogin() {
+
+        var user =
+            document
+                .getElementById('usernameField')
+                .value
+                .trim();
+
+
+        var pass =
+            document
+                .getElementById('passwordField')
+                .value;
+
+
+        if (!user || !pass) {
+
+            alert("Please enter credentials.");
+
+            return;
+        }
+
+
+        try {
+
+            var payloadBody = {
+
+                username: user,
+
+                password: pass
+
+            };
+
+
+            var response =
+                await fetch('/api/login', {
+
+                    method: 'POST',
+
+                    headers: {
+                        'Content-Type':
+                            'application/json'
+                    },
+
+                    body:
+                        JSON.stringify(payloadBody)
+
+                });
+
+
+            if (response.ok) {
+
+                window.location.href = '/home';
+
+            }
+
+            else {
+
+                alert(
+                    "Invalid username or password match configuration."
+                );
+
+            }
+
+        }
+
+        catch (err) {
+
+            alert(
+                "Network pipeline timeout error."
+            );
+
+        }
+
+    }
+
+
+
+    async function processUserRegistration() {
+
+        var user =
+            document
+                .getElementById('usernameField')
+                .value
+                .trim();
+
+
+        var pass =
+            document
+                .getElementById('passwordField')
+                .value;
+
+
+        if (!user || !pass) {
+
+            alert("Please enter credentials.");
+
+            return;
+        }
+
+
+        try {
+
+            var payloadBody = {
+
+                username: user,
+
+                password: pass
+
+            };
+
+
+            var response =
+                await fetch('/api/register', {
+
+                    method: 'POST',
+
+                    headers: {
+                        'Content-Type':
+                            'application/json'
+                    },
+
+                    body:
+                        JSON.stringify(payloadBody)
+
+                });
+
+
+            if (response.ok) {
+
+                alert(
+                    "Account registration initialized successfully."
+                );
+
+            }
+
+            else {
+
+                alert(
+                    "Database failed to compile new user metadata profiles."
+                );
+
+            }
+
+        }
+
+        catch (err) {
+
+            alert(
+                "Network pipeline registration timeout error."
+            );
+
+        }
+
+    }
+
+</script>
+
+
+</body>
+
+</html>

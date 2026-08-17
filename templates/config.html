@@ -1,0 +1,1393 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Compliance Risk Monitor - Configuration</title>
+
+    <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --bg: #f3f4f6;
+            --surface: #ffffff;
+            --surface-soft: #f8f9fa;
+
+            --border: #d9dde3;
+            --border-dark: #b9bec5;
+
+            --text: #171a1f;
+            --text-secondary: #5f6670;
+            --text-muted: #858c96;
+
+            --nav: #20242a;
+            --nav-hover: #2d3239;
+
+            --success: #397252;
+            --danger: #9f3d3d;
+
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+
+        body {
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+
+            background: var(--bg);
+            color: var(--text);
+
+            min-height: 100vh;
+        }
+
+
+        /* =====================================================
+           APPLICATION SHELL
+        ===================================================== */
+
+        .app {
+            min-height: 100vh;
+            display: flex;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .sidebar {
+            width: 235px;
+            min-height: 100vh;
+
+            background: var(--nav);
+            color: #ffffff;
+
+            border-right: 1px solid #16191d;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* BRAND */
+
+        .brand {
+            height: 82px;
+
+            padding: 0 25px;
+
+            display: flex;
+            align-items: center;
+
+            border-bottom: 1px solid #383d44;
+        }
+
+
+        .brand-mark {
+            width: 34px;
+            height: 34px;
+
+            border: 1px solid #777d85;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: 16px;
+
+            margin-right: 12px;
+        }
+
+
+        .brand-text {
+            line-height: 1.1;
+        }
+
+
+        .brand-title {
+            font-size: 14px;
+            font-weight: 700;
+            letter-spacing: 0.3px;
+        }
+
+
+        .brand-subtitle {
+            margin-top: 4px;
+
+            font-size: 10px;
+
+            color: #969ca4;
+
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+
+        /* NAVIGATION */
+
+        .sidebar-section {
+            padding: 25px 14px;
+        }
+
+
+        .sidebar-label {
+            color: #7e858e;
+
+            font-size: 10px;
+            font-weight: 700;
+
+            text-transform: uppercase;
+            letter-spacing: 1.2px;
+
+            padding: 0 12px;
+
+            margin-bottom: 10px;
+        }
+
+
+        .nav-link {
+            display: flex;
+            align-items: center;
+
+            height: 43px;
+
+            padding: 0 13px;
+
+            margin-bottom: 4px;
+
+            color: #c5c9ce;
+
+            text-decoration: none;
+
+            font-size: 13px;
+            font-weight: 600;
+
+            border-left: 3px solid transparent;
+
+            transition: 0.15s ease;
+        }
+
+
+        .nav-link:hover {
+            background: var(--nav-hover);
+            color: #ffffff;
+        }
+
+
+        .nav-link.active {
+            background: #30353c;
+
+            color: #ffffff;
+
+            border-left-color: #ffffff;
+        }
+
+
+        .nav-icon {
+            width: 28px;
+
+            color: #9da3aa;
+
+            font-size: 14px;
+        }
+
+
+        .nav-link.active .nav-icon {
+            color: #ffffff;
+        }
+
+
+        /* SIDEBAR FOOTER */
+
+        .sidebar-footer {
+            margin-top: auto;
+
+            padding: 18px 22px;
+
+            border-top: 1px solid #383d44;
+
+            color: #777e87;
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           MAIN AREA
+        ===================================================== */
+
+        .main {
+            flex: 1;
+
+            min-width: 0;
+
+            display: flex;
+            flex-direction: column;
+        }
+
+
+        /* =====================================================
+           TOP BAR
+        ===================================================== */
+
+        .topbar {
+            height: 82px;
+
+            background: var(--surface);
+
+            border-bottom: 1px solid var(--border);
+
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+            padding: 0 34px;
+        }
+
+
+        .page-heading {
+            display: flex;
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+
+        .breadcrumb {
+            font-size: 11px;
+
+            color: var(--text-muted);
+        }
+
+
+        .breadcrumb span {
+            color: var(--text-secondary);
+        }
+
+
+        .page-heading h1 {
+            font-size: 21px;
+
+            font-weight: 700;
+
+            letter-spacing: -0.2px;
+        }
+
+
+        .system-status {
+            display: flex;
+            align-items: center;
+
+            gap: 9px;
+
+            font-size: 11px;
+
+            color: var(--text-secondary);
+        }
+
+
+        .status-dot {
+            width: 8px;
+            height: 8px;
+
+            background: var(--success);
+
+            border-radius: 50%;
+        }
+
+
+        /* =====================================================
+           CONTENT
+        ===================================================== */
+
+        .content {
+            padding: 32px 34px 50px;
+
+            max-width: 1200px;
+
+            width: 100%;
+        }
+
+
+        .section-header {
+            margin-bottom: 22px;
+        }
+
+
+        .section-header h2 {
+            font-size: 16px;
+
+            font-weight: 700;
+        }
+
+
+        .section-header p {
+            margin-top: 6px;
+
+            color: var(--text-secondary);
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           CONFIGURATION GRID
+        ===================================================== */
+
+        .configuration-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            gap: 18px;
+
+            margin-bottom: 24px;
+        }
+
+
+        .config-card {
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            box-shadow: var(--shadow);
+        }
+
+
+        .card-header {
+            height: 55px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            padding: 0 20px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+
+        .card-title {
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        .card-code {
+            font-size: 10px;
+
+            color: var(--text-muted);
+
+            font-family:
+                Consolas,
+                monospace;
+        }
+
+
+        .card-body {
+            padding: 21px;
+        }
+
+
+        /* =====================================================
+           PASSWORD POLICY
+        ===================================================== */
+
+        .policy-grid {
+            display: grid;
+
+            grid-template-columns: 1fr 1fr;
+
+            border: 1px solid var(--border);
+        }
+
+
+        .policy-item {
+            min-height: 54px;
+
+            padding: 12px 14px;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+
+        .policy-item:nth-child(odd) {
+            border-right: 1px solid var(--border);
+        }
+
+
+        .policy-item:nth-last-child(-n + 2) {
+            border-bottom: none;
+        }
+
+
+        .policy-label {
+            display: block;
+
+            color: var(--text-muted);
+
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.5px;
+
+            margin-bottom: 4px;
+        }
+
+
+        .policy-value {
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           OPERATIONAL CONTROLS
+        ===================================================== */
+
+        .setting-row {
+            min-height: 80px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            border-bottom: 1px solid var(--border);
+        }
+
+
+        .setting-row:first-child {
+            padding-top: 0;
+        }
+
+
+        .setting-row:last-child {
+            border-bottom: none;
+        }
+
+
+        .setting-info {
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+
+        .setting-name {
+            font-size: 13px;
+
+            font-weight: 700;
+        }
+
+
+        .setting-description {
+            font-size: 11px;
+
+            color: var(--text-muted);
+        }
+
+
+        /* =====================================================
+           ENTERPRISE TOGGLE
+        ===================================================== */
+
+        .switch {
+            position: relative;
+
+            width: 42px;
+            height: 22px;
+
+            flex-shrink: 0;
+        }
+
+
+        .switch input {
+            opacity: 0;
+
+            width: 0;
+            height: 0;
+        }
+
+
+        .slider {
+            position: absolute;
+
+            inset: 0;
+
+            background: #c8cdd3;
+
+            border: 1px solid #adb3bb;
+
+            cursor: pointer;
+
+            transition: 0.18s ease;
+
+            border-radius: 2px;
+        }
+
+
+        .slider:before {
+            content: "";
+
+            position: absolute;
+
+            width: 16px;
+            height: 16px;
+
+            left: 2px;
+            top: 2px;
+
+            background: #ffffff;
+
+            border: 1px solid #adb3bb;
+
+            transition: 0.18s ease;
+
+            border-radius: 1px;
+        }
+
+
+        input:checked + .slider {
+            background: #29313a;
+
+            border-color: #29313a;
+        }
+
+
+        input:checked + .slider:before {
+            transform: translateX(20px);
+
+            border-color: #ffffff;
+        }
+
+
+        /* =====================================================
+           SYSTEM INFORMATION
+        ===================================================== */
+
+        .system-card {
+            background: var(--surface);
+
+            border: 1px solid var(--border);
+
+            box-shadow: var(--shadow);
+        }
+
+
+        .system-grid {
+            display: grid;
+
+            grid-template-columns:
+                repeat(3, 1fr);
+        }
+
+
+        .system-item {
+            padding: 18px 20px;
+
+            border-right: 1px solid var(--border);
+        }
+
+
+        .system-item:last-child {
+            border-right: none;
+        }
+
+
+        .system-label {
+            font-size: 10px;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
+
+            color: var(--text-muted);
+
+            margin-bottom: 7px;
+        }
+
+
+        .system-value {
+            font-size: 12px;
+
+            font-weight: 600;
+        }
+
+
+        /* =====================================================
+           FOOTER
+        ===================================================== */
+
+        .content-footer {
+            margin-top: 25px;
+
+            padding-top: 16px;
+
+            border-top: 1px solid var(--border);
+
+            display: flex;
+
+            justify-content: space-between;
+
+            color: var(--text-muted);
+
+            font-size: 10px;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 850px) {
+
+            .sidebar {
+                width: 190px;
+            }
+
+
+            .configuration-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .content {
+                padding: 25px;
+            }
+
+        }
+
+
+        @media (max-width: 650px) {
+
+            .app {
+                flex-direction: column;
+            }
+
+
+            .sidebar {
+                width: 100%;
+
+                min-height: auto;
+            }
+
+
+            .brand {
+                height: 65px;
+            }
+
+
+            .sidebar-section {
+                padding: 10px;
+
+                display: flex;
+            }
+
+
+            .sidebar-label {
+                display: none;
+            }
+
+
+            .nav-link {
+                flex: 1;
+
+                justify-content: center;
+
+                border-left: none;
+
+                border-bottom: 3px solid transparent;
+            }
+
+
+            .nav-link.active {
+                border-bottom-color: #ffffff;
+            }
+
+
+            .nav-icon {
+                display: none;
+            }
+
+
+            .sidebar-footer {
+                display: none;
+            }
+
+
+            .topbar {
+                padding: 0 20px;
+            }
+
+
+            .system-status {
+                display: none;
+            }
+
+
+            .content {
+                padding: 22px 16px;
+            }
+
+
+            .system-grid {
+                grid-template-columns: 1fr;
+            }
+
+
+            .system-item {
+                border-right: none;
+
+                border-bottom: 1px solid var(--border);
+            }
+
+
+            .system-item:last-child {
+                border-bottom: none;
+            }
+
+
+            .content-footer {
+                flex-direction: column;
+
+                gap: 7px;
+            }
+
+        }
+
+    </style>
+</head>
+
+
+<body>
+
+<div class="app">
+
+
+    <!-- =====================================================
+         SIDEBAR
+    ====================================================== -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-mark">
+                ▣
+            </div>
+
+            <div class="brand-text">
+
+                <div class="brand-title">
+                    Compliance Risk
+                </div>
+
+                <div class="brand-subtitle">
+                    Monitor
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="sidebar-section">
+
+            <div class="sidebar-label">
+                Navigation
+            </div>
+
+
+            <a
+                href="/home"
+                class="nav-link"
+            >
+                <span class="nav-icon">
+                    ⌂
+                </span>
+
+                Home
+            </a>
+
+
+            <a
+                href="/config"
+                class="nav-link active"
+            >
+                <span class="nav-icon">
+                    ⚙
+                </span>
+
+                Configuration
+            </a>
+
+
+            <a
+                href="/rules"
+                class="nav-link"
+            >
+                <span class="nav-icon">
+                    ⊞
+                </span>
+
+                Rules
+            </a>
+
+
+            <a
+                href="/report"
+                class="nav-link"
+            >
+                <span class="nav-icon">
+                    ▤
+                </span>
+
+                Reports
+            </a>
+
+        </div>
+
+
+        <div class="sidebar-footer">
+
+            <div>
+                COMPLIANCE RISK MONITOR
+            </div>
+
+            <div style="margin-top: 5px;">
+                Version 1.0.0
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN CONTENT
+    ====================================================== -->
+
+    <main class="main">
+
+
+        <!-- TOP BAR -->
+
+        <header class="topbar">
+
+            <div class="page-heading">
+
+                <div class="breadcrumb">
+                    Administration /
+                    <span>Configuration</span>
+                </div>
+
+                <h1>
+                    Configuration Settings
+                </h1>
+
+            </div>
+
+
+            <div class="system-status">
+
+                <span class="status-dot"></span>
+
+                System operational
+
+            </div>
+
+        </header>
+
+
+
+        <!-- =================================================
+             CONTENT
+        ================================================== -->
+
+        <section class="content">
+
+
+            <div class="section-header">
+
+                <h2>
+                    System Configuration
+                </h2>
+
+                <p>
+                    Manage operational controls and security policy parameters.
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 CONFIGURATION CARDS
+            ================================================== -->
+
+            <div class="configuration-grid">
+
+
+                <!-- PASSWORD POLICY -->
+
+                <div class="config-card">
+
+                    <div class="card-header">
+
+                        <span class="card-title">
+                            Password Policy
+                        </span>
+
+                        <span class="card-code">
+                            SEC-001
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+                        <div class="policy-grid">
+
+
+                            <div class="policy-item">
+
+                                <span class="policy-label">
+                                    Maximum Length
+                                </span>
+
+                                <span class="policy-value">
+                                    16 characters
+                                </span>
+
+                            </div>
+
+
+                            <div class="policy-item">
+
+                                <span class="policy-label">
+                                    Minimum Length
+                                </span>
+
+                                <span class="policy-value">
+                                    8 characters
+                                </span>
+
+                            </div>
+
+
+                            <div class="policy-item">
+
+                                <span class="policy-label">
+                                    Uppercase
+                                </span>
+
+                                <span class="policy-value">
+                                    Minimum 1
+                                </span>
+
+                            </div>
+
+
+                            <div class="policy-item">
+
+                                <span class="policy-label">
+                                    Lowercase
+                                </span>
+
+                                <span class="policy-value">
+                                    Minimum 1
+                                </span>
+
+                            </div>
+
+
+                            <div class="policy-item">
+
+                                <span class="policy-label">
+                                    Numeric
+                                </span>
+
+                                <span class="policy-value">
+                                    Minimum 1
+                                </span>
+
+                            </div>
+
+
+                            <div class="policy-item">
+
+                                <span class="policy-label">
+                                    Policy Status
+                                </span>
+
+                                <span class="policy-value">
+                                    Enforced
+                                </span>
+
+                            </div>
+
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- OPERATIONAL CONTROLS -->
+
+                <div class="config-card">
+
+                    <div class="card-header">
+
+                        <span class="card-title">
+                            Operational Controls
+                        </span>
+
+                        <span class="card-code">
+                            OPS-001
+                        </span>
+
+                    </div>
+
+
+                    <div class="card-body">
+
+
+                        <!-- DATA PULLING -->
+
+                        <div class="setting-row">
+
+                            <div class="setting-info">
+
+                                <span class="setting-name">
+                                    Data Pulling
+                                </span>
+
+                                <span class="setting-description">
+                                    Enable transaction data ingestion
+                                </span>
+
+                            </div>
+
+
+                            <label class="switch">
+
+                                <input
+                                    type="checkbox"
+                                    id="dataPullingToggleBtn"
+                                    onclick="sendOperationToggleUpdate(
+                                        'data_pulling',
+                                        this.checked
+                                    )"
+                                >
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+
+                        <!-- RULE ENGINE -->
+
+                        <div class="setting-row">
+
+                            <div class="setting-info">
+
+                                <span class="setting-name">
+                                    Rule Engine
+                                </span>
+
+                                <span class="setting-description">
+                                    Enable configured fraud detection rules
+                                </span>
+
+                            </div>
+
+
+                            <label class="switch">
+
+                                <input
+                                    type="checkbox"
+                                    id="ruleEngineToggleBtn"
+                                    onclick="sendOperationToggleUpdate(
+                                        'rule_engine',
+                                        this.checked
+                                    )"
+                                >
+
+                                <span class="slider"></span>
+
+                            </label>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 SYSTEM INFORMATION
+            ================================================== -->
+
+            <div class="system-card">
+
+                <div class="card-header">
+
+                    <span class="card-title">
+                        System Information
+                    </span>
+
+                    <span class="card-code">
+                        SYS-INFO
+                    </span>
+
+                </div>
+
+
+                <div class="system-grid">
+
+
+                    <div class="system-item">
+
+                        <div class="system-label">
+                            Configuration Source
+                        </div>
+
+                        <div class="system-value">
+                            Central Configuration Store
+                        </div>
+
+                    </div>
+
+
+                    <div class="system-item">
+
+                        <div class="system-label">
+                            Rule Processing
+                        </div>
+
+                        <div class="system-value">
+                            Real-time
+                        </div>
+
+                    </div>
+
+
+                    <div class="system-item">
+
+                        <div class="system-label">
+                            Configuration State
+                        </div>
+
+                        <div class="system-value">
+                            Active
+                        </div>
+
+                    </div>
+
+
+                </div>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <div class="content-footer">
+
+                <span>
+                    Configuration changes are applied immediately.
+                </span>
+
+                <span>
+                    Last updated: 14 Aug 2026 15:00:00
+                </span>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<script>
+
+    /* =========================================================
+       LOAD SAVED SETTINGS
+    ========================================================= */
+
+    async function fetchSavedSettingsStateFromDatabase() {
+
+        try {
+
+            const response =
+                await fetch('/api/get-settings');
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    `HTTP error: ${response.status}`
+                );
+
+            }
+
+
+            const activeConfig =
+                await response.json();
+
+
+            /*
+             * Data Pulling
+             */
+
+            document.getElementById(
+                'dataPullingToggleBtn'
+            ).checked =
+                activeConfig['data_pulling'] || false;
+
+
+            /*
+             * Rule Engine
+             */
+
+            document.getElementById(
+                'ruleEngineToggleBtn'
+            ).checked =
+                activeConfig['rule_engine'] || false;
+
+
+        } catch (e) {
+
+            console.error(
+                'Unable to load configuration:',
+                e
+            );
+
+        }
+
+    }
+
+
+
+    /* =========================================================
+       UPDATE SETTINGS
+    ========================================================= */
+
+    async function sendOperationToggleUpdate(
+        settingKey,
+        isCheckedValue
+    ) {
+
+        try {
+
+            const response =
+                await fetch(
+                    '/api/update-setting',
+                    {
+                        method: 'POST',
+
+                        headers: {
+                            'Content-Type':
+                                'application/json'
+                        },
+
+                        body: JSON.stringify({
+                            key: settingKey,
+                            value: isCheckedValue
+                        })
+                    }
+                );
+
+
+            if (!response.ok) {
+
+                throw new Error(
+                    `HTTP error: ${response.status}`
+                );
+
+            }
+
+
+        } catch (e) {
+
+            console.error(
+                'Configuration update failed:',
+                e
+            );
+
+
+            alert(
+                'Unable to save configuration. Please try again.'
+            );
+
+
+            /*
+             * Restore the actual database state
+             * if the update failed.
+             */
+
+            fetchSavedSettingsStateFromDatabase();
+
+        }
+
+    }
+
+
+
+    /* =========================================================
+       INITIALIZE PAGE
+    ========================================================= */
+
+    fetchSavedSettingsStateFromDatabase();
+
+</script>
+
+</body>
+
+</html>

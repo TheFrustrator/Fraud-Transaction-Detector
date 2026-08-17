@@ -1,0 +1,1671 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <title>Compliance Risk Monitor - Rules</title>
+
+
+    <style>
+
+        /* =====================================================
+           GLOBAL
+        ===================================================== */
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+
+        :root {
+
+            --bg: #f3f4f6;
+
+            --white: #ffffff;
+
+            --panel: #fafafa;
+
+            --border: #d7dbe0;
+
+            --border-dark: #b8bec5;
+
+            --text: #191d22;
+
+            --secondary: #606873;
+
+            --muted: #858c95;
+
+            --nav: #20242a;
+
+            --nav-hover: #2c3137;
+
+            --nav-border: #393e45;
+
+            --blue: #315d86;
+
+            --blue-light: #edf3f8;
+
+            --green: #397252;
+
+            --green-light: #edf5f0;
+
+            --red: #984141;
+
+            --red-light: #f8eeee;
+
+            --shadow: 0 1px 3px rgba(0, 0, 0, 0.06);
+        }
+
+
+        body {
+
+            font-family:
+                Inter,
+                -apple-system,
+                BlinkMacSystemFont,
+                "Segoe UI",
+                Roboto,
+                Helvetica,
+                Arial,
+                sans-serif;
+
+            background: var(--bg);
+
+            color: var(--text);
+
+            min-height: 100vh;
+        }
+
+
+        /* =====================================================
+           APPLICATION
+        ===================================================== */
+
+        .application {
+
+            min-height: 100vh;
+
+            display: flex;
+        }
+
+
+        /* =====================================================
+           SIDEBAR
+        ===================================================== */
+
+        .navigation-sidebar {
+
+            width: 235px;
+
+            min-height: 100vh;
+
+            background: var(--nav);
+
+            color: #ffffff;
+
+            border-right: 1px solid #15181c;
+
+            display: flex;
+
+            flex-direction: column;
+
+            flex-shrink: 0;
+        }
+
+
+        /* -----------------------------------------------------
+           BRAND
+        ----------------------------------------------------- */
+
+        .brand-area {
+
+            height: 82px;
+
+            padding: 0 24px;
+
+            display: flex;
+
+            align-items: center;
+
+            border-bottom: 1px solid var(--nav-border);
+        }
+
+
+        .brand-symbol {
+
+            width: 34px;
+
+            height: 34px;
+
+            border: 1px solid #777e86;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            font-size: 14px;
+
+            margin-right: 12px;
+        }
+
+
+        .brand-name {
+
+            font-size: 14px;
+
+            font-weight: 700;
+
+            letter-spacing: 0.2px;
+        }
+
+
+        .brand-description {
+
+            margin-top: 4px;
+
+            font-size: 9px;
+
+            color: #9299a1;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1px;
+        }
+
+
+        /* -----------------------------------------------------
+           NAVIGATION
+        ----------------------------------------------------- */
+
+        .navigation-section {
+
+            padding: 25px 14px;
+        }
+
+
+        .navigation-label {
+
+            padding: 0 12px;
+
+            margin-bottom: 10px;
+
+            font-size: 10px;
+
+            font-weight: 700;
+
+            color: #7e858d;
+
+            text-transform: uppercase;
+
+            letter-spacing: 1.1px;
+        }
+
+
+        .navigation-link {
+
+            height: 43px;
+
+            display: flex;
+
+            align-items: center;
+
+            padding: 0 13px;
+
+            margin-bottom: 4px;
+
+            color: #c3c7cc;
+
+            text-decoration: none;
+
+            font-size: 13px;
+
+            font-weight: 600;
+
+            border-left: 3px solid transparent;
+
+            transition: 0.15s ease;
+        }
+
+
+        .navigation-link:hover {
+
+            background: var(--nav-hover);
+
+            color: #ffffff;
+        }
+
+
+        .navigation-link.active {
+
+            background: #30353b;
+
+            color: #ffffff;
+
+            border-left-color: #ffffff;
+        }
+
+
+        .navigation-icon {
+
+            width: 28px;
+
+            color: #989fa7;
+
+            font-size: 14px;
+        }
+
+
+        .navigation-link.active .navigation-icon {
+
+            color: #ffffff;
+        }
+
+
+        /* -----------------------------------------------------
+           SIDEBAR FOOTER
+        ----------------------------------------------------- */
+
+        .navigation-footer {
+
+            margin-top: auto;
+
+            padding: 18px 22px;
+
+            border-top: 1px solid var(--nav-border);
+
+            color: #767d85;
+
+            font-size: 9px;
+
+            line-height: 1.5;
+
+            letter-spacing: 0.2px;
+        }
+
+
+        /* =====================================================
+           MAIN AREA
+        ===================================================== */
+
+        .main-area {
+
+            flex: 1;
+
+            min-width: 0;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        /* =====================================================
+           TOP HEADER
+        ===================================================== */
+
+        .top-header {
+
+            height: 82px;
+
+            background: var(--white);
+
+            border-bottom: 1px solid var(--border);
+
+            padding: 0 34px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+        }
+
+
+        .page-header-left {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 5px;
+        }
+
+
+        .breadcrumb {
+
+            font-size: 11px;
+
+            color: var(--muted);
+        }
+
+
+        .breadcrumb span {
+
+            color: var(--secondary);
+        }
+
+
+        .page-title {
+
+            font-size: 21px;
+
+            font-weight: 700;
+
+            letter-spacing: -0.2px;
+        }
+
+
+        .operational-status {
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            font-size: 11px;
+
+            color: var(--secondary);
+        }
+
+
+        .operational-dot {
+
+            width: 8px;
+
+            height: 8px;
+
+            border-radius: 50%;
+
+            background: var(--green);
+        }
+
+
+        /* =====================================================
+           CONTENT
+        ===================================================== */
+
+        .content-area {
+
+            width: 100%;
+
+            max-width: 1280px;
+
+            padding: 32px 34px 50px;
+        }
+
+
+        .section-introduction {
+
+            margin-bottom: 22px;
+        }
+
+
+        .section-introduction h2 {
+
+            font-size: 16px;
+
+            font-weight: 700;
+        }
+
+
+        .section-introduction p {
+
+            margin-top: 6px;
+
+            color: var(--secondary);
+
+            font-size: 12px;
+        }
+
+
+        /* =====================================================
+           RULE WORKSPACE
+        ===================================================== */
+
+        .rules-workspace {
+
+            width: 100%;
+
+            min-height: 600px;
+
+            background: var(--white);
+
+            border: 1px solid var(--border);
+
+            box-shadow: var(--shadow);
+
+            display: flex;
+        }
+
+
+        /* =====================================================
+           RULE LIST PANEL
+        ===================================================== */
+
+        .rules-list-panel {
+
+            width: 280px;
+
+            flex-shrink: 0;
+
+            border-right: 1px solid var(--border);
+
+            background: #fafbfc;
+
+            display: flex;
+
+            flex-direction: column;
+        }
+
+
+        /* -----------------------------------------------------
+           LIST HEADER
+        ----------------------------------------------------- */
+
+        .rules-list-header {
+
+            padding: 18px;
+
+            border-bottom: 1px solid var(--border);
+
+            background: #ffffff;
+        }
+
+
+        .rules-list-heading {
+
+            font-size: 12px;
+
+            font-weight: 700;
+
+            color: var(--text);
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.6px;
+
+            margin-bottom: 5px;
+        }
+
+
+        .rules-list-description {
+
+            font-size: 10px;
+
+            color: var(--muted);
+
+            line-height: 1.4;
+        }
+
+
+        /* -----------------------------------------------------
+           ADD BUTTON
+        ----------------------------------------------------- */
+
+        .add-rule-button {
+
+            margin-top: 15px;
+
+            width: 100%;
+
+            height: 38px;
+
+            border: 1px solid #29313a;
+
+            background: #29313a;
+
+            color: #ffffff;
+
+            font-size: 11px;
+
+            font-weight: 700;
+
+            cursor: pointer;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.3px;
+
+            transition: 0.15s ease;
+        }
+
+
+        .add-rule-button:hover {
+
+            background: #1f252b;
+        }
+
+
+        /* -----------------------------------------------------
+           RULE ITEMS
+        ----------------------------------------------------- */
+
+        .rule-items-area {
+
+            flex: 1;
+
+            overflow-y: auto;
+
+            padding: 12px;
+        }
+
+
+        .rule-item {
+
+            width: 100%;
+
+            min-height: 58px;
+
+            padding: 12px;
+
+            margin-bottom: 7px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            border: 1px solid var(--border);
+
+            background: #ffffff;
+
+            cursor: pointer;
+
+            transition: 0.15s ease;
+        }
+
+
+        .rule-item:hover {
+
+            border-color: var(--border-dark);
+
+            background: #f8f9fa;
+        }
+
+
+        .rule-item.active {
+
+            background: var(--blue-light);
+
+            border-color: #9fb7cd;
+
+            border-left: 3px solid var(--blue);
+        }
+
+
+        .rule-name {
+
+            flex: 1;
+
+            min-width: 0;
+
+            font-size: 12px;
+
+            font-weight: 600;
+
+            color: var(--text);
+
+            line-height: 1.4;
+        }
+
+
+        .rule-delete-button {
+
+            width: 28px;
+
+            height: 28px;
+
+            flex-shrink: 0;
+
+            border: 1px solid transparent;
+
+            background: transparent;
+
+            color: #8b4545;
+
+            font-size: 13px;
+
+            cursor: pointer;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+        }
+
+
+        .rule-delete-button:hover {
+
+            background: var(--red-light);
+
+            border-color: #e0baba;
+        }
+
+
+        /* =====================================================
+           RULE EDITOR
+        ===================================================== */
+
+        .rule-editor-panel {
+
+            flex: 1;
+
+            min-width: 0;
+
+            background: #ffffff;
+
+            padding: 28px 32px;
+
+            overflow-x: auto;
+        }
+
+
+        /* Empty state */
+
+        .empty-rule-state {
+
+            min-height: 520px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            flex-direction: column;
+
+            text-align: center;
+
+            color: var(--muted);
+        }
+
+
+        .empty-rule-symbol {
+
+            width: 48px;
+
+            height: 48px;
+
+            border: 1px solid var(--border-dark);
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: center;
+
+            margin-bottom: 15px;
+
+            font-size: 18px;
+
+            color: var(--secondary);
+        }
+
+
+        .empty-rule-state h3 {
+
+            font-size: 14px;
+
+            color: var(--text-secondary);
+
+            margin-bottom: 6px;
+        }
+
+
+        .empty-rule-state p {
+
+            font-size: 11px;
+
+            max-width: 300px;
+
+            line-height: 1.5;
+        }
+
+
+        /* =====================================================
+           DYNAMIC FORM STYLING
+           
+           These selectors also style elements generated
+           dynamically by rules_engine.js.
+        ===================================================== */
+
+        .rule-editor-panel form {
+
+            width: 100%;
+
+            max-width: 900px;
+        }
+
+
+        .form-section-title {
+
+            font-size: 17px !important;
+
+            font-weight: 700 !important;
+
+            color: var(--text) !important;
+
+            padding-bottom: 13px !important;
+
+            margin-bottom: 22px !important;
+
+            border-bottom: 1px solid var(--border) !important;
+        }
+
+
+        .form-row-split {
+
+            display: flex;
+
+            gap: 18px;
+
+            margin-bottom: 22px;
+        }
+
+
+        .input-group-row {
+
+            flex: 1;
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 6px;
+        }
+
+
+        .input-group-row label {
+
+            font-size: 10px !important;
+
+            font-weight: 700 !important;
+
+            color: var(--secondary) !important;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.6px;
+        }
+
+
+        .text-input-field {
+
+            width: 100%;
+
+            height: 38px !important;
+
+            padding: 0 11px !important;
+
+            border: 1px solid var(--border-dark) !important;
+
+            border-radius: 0 !important;
+
+            background: #ffffff !important;
+
+            color: var(--text) !important;
+
+            font-family: inherit;
+
+            font-size: 12px !important;
+
+            outline: none;
+        }
+
+
+        .text-input-field:focus {
+
+            border-color: var(--blue) !important;
+
+            box-shadow: none !important;
+        }
+
+
+        .section-subtitle-lbl {
+
+            font-size: 10px !important;
+
+            font-weight: 700 !important;
+
+            color: var(--secondary) !important;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.7px;
+
+            margin-bottom: 10px;
+        }
+
+
+        /* =====================================================
+           CONDITION AREA
+        ===================================================== */
+
+        .condition-matrix-box {
+
+            display: flex;
+
+            flex-direction: column;
+
+            gap: 8px;
+
+            margin-bottom: 15px;
+
+            width: 100%;
+        }
+
+
+        .condition-row-item {
+
+            min-height: 56px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 8px;
+
+            padding: 9px;
+
+            background: #fafafa !important;
+
+            border: 1px solid var(--border) !important;
+
+            border-radius: 0 !important;
+
+            box-shadow: none !important;
+        }
+
+
+        .select-dropdown-field {
+
+            height: 36px !important;
+
+            min-width: 175px;
+
+            padding: 0 9px;
+
+            border: 1px solid var(--border-dark);
+
+            border-radius: 0;
+
+            background: #ffffff;
+
+            color: var(--text);
+
+            font-size: 11px;
+        }
+
+
+        .operator-dropdown-field {
+
+            height: 36px !important;
+
+            min-width: 100px;
+
+            padding: 0 8px;
+
+            border: 1px solid var(--border-dark);
+
+            border-radius: 0;
+
+            background: #ffffff;
+
+            color: var(--text);
+
+            font-size: 11px;
+        }
+
+
+        .logic-link-dropdown-field {
+
+            height: 36px !important;
+
+            min-width: 75px;
+
+            padding: 0 7px;
+
+            border: 1px solid var(--border-dark);
+
+            border-radius: 0;
+
+            background: #f5f6f7;
+
+            color: var(--text);
+
+            font-size: 10px;
+
+            font-weight: 700;
+        }
+
+
+        .value-input-box {
+
+            flex: 1;
+
+            height: 36px !important;
+
+            min-width: 100px;
+
+            padding: 0 9px;
+
+            border: 1px solid var(--border-dark);
+
+            border-radius: 0;
+
+            background: #ffffff;
+
+            color: var(--text);
+
+            font-size: 11px;
+
+            outline: none;
+        }
+
+
+        .value-input-box:focus {
+
+            border-color: var(--blue);
+        }
+
+
+        .remove-condition-row-btn {
+
+            width: 30px !important;
+
+            height: 30px !important;
+
+            flex-shrink: 0;
+
+            border-radius: 0 !important;
+
+            background: #ffffff !important;
+
+            color: var(--red) !important;
+
+            border: 1px solid #d9b5b5 !important;
+
+            font-size: 15px !important;
+        }
+
+
+        .remove-condition-row-btn:hover {
+
+            background: var(--red-light) !important;
+        }
+
+
+        /* =====================================================
+           ADD CONDITION
+        ===================================================== */
+
+        .add-condition-clause-link {
+
+            height: 34px;
+
+            padding: 0 14px !important;
+
+            margin-bottom: 24px !important;
+
+            border: 1px solid var(--border-dark) !important;
+
+            border-radius: 0 !important;
+
+            background: #ffffff !important;
+
+            color: var(--text) !important;
+
+            font-size: 10px !important;
+
+            font-weight: 700 !important;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.4px;
+        }
+
+
+        .add-condition-clause-link:hover {
+
+            background: #f2f3f4 !important;
+        }
+
+
+        /* =====================================================
+           ACTION AREA
+        ===================================================== */
+
+        .action-dispatch-panel {
+
+            display: flex;
+
+            justify-content: flex-end;
+
+            align-items: center;
+
+            gap: 10px;
+
+            width: 100%;
+
+            border-top: 1px solid var(--border) !important;
+
+            padding-top: 20px !important;
+
+            margin-top: 5px !important;
+        }
+
+
+        .save-rule-action-btn {
+
+            height: 38px;
+
+            padding: 0 25px !important;
+
+            border-radius: 0 !important;
+
+            border: 1px solid #345f48 !important;
+
+            background: var(--green) !important;
+
+            color: #ffffff !important;
+
+            font-size: 11px !important;
+
+            font-weight: 700 !important;
+
+            text-transform: uppercase;
+
+            letter-spacing: 0.4px;
+
+            cursor: pointer;
+        }
+
+
+        .save-rule-action-btn:hover {
+
+            background: #2e6145 !important;
+        }
+
+
+        /* =====================================================
+           BADGES
+        ===================================================== */
+
+        .readonly-condition-badge {
+
+            display: inline-block;
+
+            padding: 6px 9px !important;
+
+            margin-right: 6px !important;
+
+            margin-bottom: 6px !important;
+
+            border-radius: 0 !important;
+
+            background: var(--blue-light) !important;
+
+            color: var(--blue) !important;
+
+            border: 1px solid #bdcede !important;
+
+            font-size: 10px !important;
+
+            font-weight: 700;
+        }
+
+
+        /* =====================================================
+           SCROLLBAR
+        ===================================================== */
+
+        .rule-items-area::-webkit-scrollbar {
+
+            width: 5px;
+        }
+
+
+        .rule-items-area::-webkit-scrollbar-track {
+
+            background: #f1f2f3;
+        }
+
+
+        .rule-items-area::-webkit-scrollbar-thumb {
+
+            background: #c4c8cd;
+        }
+
+
+        /* =====================================================
+           RESPONSIVE
+        ===================================================== */
+
+        @media (max-width: 950px) {
+
+            .navigation-sidebar {
+
+                width: 200px;
+            }
+
+
+            .rules-list-panel {
+
+                width: 240px;
+            }
+
+
+            .rule-editor-panel {
+
+                padding: 24px;
+            }
+
+
+            .condition-row-item {
+
+                flex-wrap: wrap;
+            }
+
+        }
+
+
+        @media (max-width: 700px) {
+
+            .application {
+
+                flex-direction: column;
+            }
+
+
+            .navigation-sidebar {
+
+                width: 100%;
+
+                min-height: auto;
+            }
+
+
+            .brand-area {
+
+                height: 65px;
+            }
+
+
+            .navigation-section {
+
+                padding: 8px;
+                justify-content: space-between;
+            }
+
+
+            .navigation-label {
+
+                display: none;
+            }
+
+
+            .navigation-link {
+
+                display: inline-flex;
+
+                width: 24%;
+
+                justify-content: center;
+
+                border-left: none;
+
+                border-bottom: 3px solid transparent;
+            }
+
+
+            .navigation-link.active {
+
+                border-bottom-color: #ffffff;
+            }
+
+
+            .navigation-icon {
+
+                display: none;
+            }
+
+
+            .navigation-footer {
+
+                display: none;
+            }
+
+
+            .top-header {
+
+                padding: 0 18px;
+            }
+
+
+            .operational-status {
+
+                display: none;
+            }
+
+
+            .content-area {
+
+                padding: 22px 14px;
+            }
+
+
+            .rules-workspace {
+
+                flex-direction: column;
+            }
+
+
+            .rules-list-panel {
+
+                width: 100%;
+
+                border-right: none;
+
+                border-bottom: 1px solid var(--border);
+            }
+
+
+            .rule-items-area {
+
+                max-height: 220px;
+            }
+
+
+            .rule-editor-panel {
+
+                padding: 22px 16px;
+            }
+
+
+            .form-row-split {
+
+                flex-direction: column;
+            }
+
+
+            .condition-row-item {
+
+                align-items: stretch;
+
+                flex-direction: column;
+            }
+
+
+            .select-dropdown-field,
+            .operator-dropdown-field,
+            .logic-link-dropdown-field,
+            .value-input-box {
+
+                width: 100%;
+
+                min-width: 0;
+            }
+
+
+            .remove-condition-row-btn {
+
+                width: 100% !important;
+            }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+<div class="application">
+
+
+    <!-- =====================================================
+         LEFT NAVIGATION
+    ====================================================== -->
+
+    <aside class="navigation-sidebar">
+
+
+        <div class="brand-area">
+
+            <div class="brand-symbol">
+                ▣
+            </div>
+
+            <div>
+
+                <div class="brand-name">
+                    Compliance Risk
+                </div>
+
+                <div class="brand-description">
+                    Monitor
+                </div>
+
+            </div>
+
+        </div>
+
+
+        <div class="navigation-section">
+
+            <div class="navigation-label">
+                Navigation
+            </div>
+
+
+            <a
+                href="/home"
+                class="navigation-link"
+            >
+
+                <span class="navigation-icon">
+                    ⌂
+                </span>
+
+                Dashboard
+
+            </a>
+
+
+            <a
+                href="/config"
+                class="navigation-link"
+            >
+
+                <span class="navigation-icon">
+                    ⚙
+                </span>
+
+                Configuration
+
+            </a>
+
+
+            <a
+                href="/rules"
+                class="navigation-link active"
+            >
+
+                <span class="navigation-icon">
+                    ⊞
+                </span>
+
+                Rules
+
+            </a>
+
+
+            <a
+                href="/report"
+                class="navigation-link"
+            >
+
+                <span class="navigation-icon">
+                    ▤
+                </span>
+
+                Reports
+
+            </a>
+
+        </div>
+
+
+        <div class="navigation-footer">
+
+            <div>
+                COMPLIANCE RISK MONITOR
+            </div>
+
+            <div>
+                Version 1.0.0
+            </div>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- =====================================================
+         MAIN
+    ====================================================== -->
+
+    <main class="main-area">
+
+
+        <!-- =================================================
+             HEADER
+        ================================================== -->
+
+        <header class="top-header">
+
+
+            <div class="page-header-left">
+
+                <div class="breadcrumb">
+
+                    Operations /
+                    <span>Rules</span>
+
+                </div>
+
+
+                <div class="page-title">
+
+                    Compliance Rules
+
+                </div>
+
+            </div>
+
+
+            <div class="operational-status">
+
+                <span class="operational-dot"></span>
+
+                Rule monitoring operational
+
+            </div>
+
+
+        </header>
+
+
+
+        <!-- =================================================
+             CONTENT
+        ================================================== -->
+
+        <section class="content-area">
+
+
+            <div class="section-introduction">
+
+                <h2>
+                    Rule Configuration
+                </h2>
+
+
+                <p>
+                    Create, review and maintain transaction monitoring rules.
+                </p>
+
+            </div>
+
+
+
+            <!-- =================================================
+                 RULE WORKSPACE
+            ================================================== -->
+
+            <div class="rules-workspace">
+
+
+                <!-- =================================================
+                     RULE LIST
+                ================================================== -->
+
+                <aside class="rules-list-panel">
+
+
+                    <div class="rules-list-header">
+
+
+                        <div class="rules-list-heading">
+                            Rule Register
+                        </div>
+
+
+                        <div class="rules-list-description">
+                            Select an existing rule to review or modify its conditions.
+                        </div>
+
+
+                        <button
+                            class="add-rule-button"
+                            onclick="openNewRuleCreationFormPerspective()"
+                        >
+                            + Add New Rule
+                        </button>
+
+
+                    </div>
+
+
+
+                    <!--
+
+                        IMPORTANT:
+                        Keep this ID because rules_engine.js
+                        populates the rule list here.
+
+                    -->
+
+                    <div
+                        id="ruleItemsListingContainer"
+                        class="rule-items-area"
+                    ></div>
+
+
+                </aside>
+
+
+
+                <!-- =================================================
+                     RULE EDITOR
+                ================================================== -->
+
+                <section
+                    id="rightWorkspaceWorkspaceCanvas"
+                    class="rule-editor-panel"
+                >
+
+
+                    <!--
+
+                        IMPORTANT:
+                        rules_engine.js replaces/populates
+                        this container.
+
+                    -->
+
+                    <div class="empty-rule-state">
+
+
+                        <div class="empty-rule-symbol">
+                            +
+                        </div>
+
+
+                        <h3>
+                            No Rule Selected
+                        </h3>
+
+
+                        <p>
+                            Select a rule from the register or create a new rule to begin configuration.
+                        </p>
+
+
+                    </div>
+
+
+                </section>
+
+
+            </div>
+
+
+
+            <!-- =================================================
+                 FOOTER
+            ================================================== -->
+
+            <div
+                style="
+                    margin-top:25px;
+                    padding-top:16px;
+                    border-top:1px solid #d7dbe0;
+                    display:flex;
+                    justify-content:space-between;
+                    color:#858c95;
+                    font-size:10px;
+                "
+            >
+
+                <span>
+                    Compliance Risk Monitoring System
+                </span>
+
+
+                <span>
+                    Rule configuration is maintained by authorized operators.
+                </span>
+
+            </div>
+
+
+        </section>
+
+    </main>
+
+</div>
+
+
+
+<!-- =========================================================
+     EXISTING RULE ENGINE
+     
+     DO NOT REMOVE
+========================================================= -->
+
+<script src="/static/rules_engine.js"></script>
+
+
+</body>
+
+</html>
